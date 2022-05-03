@@ -171,7 +171,7 @@ void CubismClippingManager_OpenGLES2::SetupClippingContext(CubismModel& model, C
         if (!renderer->IsUsingHighPrecisionMask())
         {
             // 生成したFrameBufferと同じサイズでビューポートを設定
-            glViewport(0, 0, _clippingMaskBufferSize.X, _clippingMaskBufferSize.Y);
+            glViewport(0, 0, static_cast<GLsizei>(_clippingMaskBufferSize.X), static_cast<GLsizei>(_clippingMaskBufferSize.Y));
 
             // モデル描画時にDrawMeshNowに渡される変換（モデルtoワールド座標変換）
             CubismMatrix44 modelToWorldF = renderer->GetMvpMatrix();
@@ -1816,7 +1816,7 @@ void CubismRenderer_OpenGLES2::Initialize(CubismModel* model)
             model->GetDrawableMaskCounts()
         );
 
-        _offscreenFrameBuffer.CreateOffscreenFrame(_clippingManager->GetClippingMaskBufferSize().X, _clippingManager->GetClippingMaskBufferSize().Y);
+        _offscreenFrameBuffer.CreateOffscreenFrame(static_cast<GLsizei>(_clippingManager->GetClippingMaskBufferSize().X), static_cast<GLsizei>(_clippingManager->GetClippingMaskBufferSize().Y));
     }
 
     _sortedDrawableIndexList.Resize(model->GetDrawableCount(), 0);
@@ -1910,7 +1910,7 @@ void CubismRenderer_OpenGLES2::DoDrawModel()
             if(clipContext->_isUsing) // 書くことになっていた
             {
                 // 生成したFrameBufferと同じサイズでビューポートを設定
-                glViewport(0, 0, _clippingManager->GetClippingMaskBufferSize().X, _clippingManager->GetClippingMaskBufferSize().Y);
+                glViewport(0, 0, static_cast<GLsizei>(_clippingManager->GetClippingMaskBufferSize().X), static_cast<GLsizei>(_clippingManager->GetClippingMaskBufferSize().Y));
 
                 PreDraw(); // バッファをクリアする
 
