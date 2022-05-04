@@ -50,7 +50,10 @@ project "Cubism"
 		}
 		defines
 		{
-			"CSM_TARGET_WIN_GL"
+			"CSM_TARGET_WIN_GL",
+			"WIN32",
+			"_WINDOWS",
+			"GLEW_STATIC"
 		}
 
 		
@@ -62,6 +65,10 @@ project "Cubism"
 			"Live2DCubismCore_MTd",
 			"glew"
 		}
+		defines
+		{
+			"DEBUG",
+		}
 
 	filter "configurations:Release"
 		optimize "on"
@@ -70,6 +77,10 @@ project "Cubism"
 		{
 			"Live2DCubismCore_MT",
 			"glew"
+		}
+		defines
+		{
+			"NDEBUG",
 		}
 
 	filter "configurations:Final"
@@ -80,5 +91,9 @@ project "Cubism"
 		{
 			"Live2DCubismCore_MT",
 			"glew"
+		}
+		defines
+		{
+			"NDEBUG",
 		}
 		
